@@ -3,10 +3,10 @@
     "Emulator": {
       "Serial": "auto",
       "GameClient": "android",
-      "PackageName": "auto",
+      "PackageName": "com.tencent.KiHan",
       "GameLanguage": "auto",
       "ScreenshotMethod": "scrcpy",
-      "ControlMethod": "MaaTouch",
+      "ControlMethod": "adb",
       "CloudPriorQueue": false,
       "AdbRestart": false
     },

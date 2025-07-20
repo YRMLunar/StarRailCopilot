@@ -8,17 +8,17 @@ ACCOUNT_CONFIRM = ButtonWrapper(
     share=[
         Button(
             file='./assets/share/login/ACCOUNT_CONFIRM.png',
-            area=(583, 424, 696, 450),
-            search=(563, 404, 716, 470),
-            color=(172, 145, 92),
-            button=(583, 424, 696, 450),
+            area=(486, 573, 786, 645),
+            search=(466, 553, 806, 665),
+            color=(41, 113, 140),
+            button=(486, 573, 786, 645),
         ),
         Button(
             file='./assets/share/login/ACCOUNT_CONFIRM.2.png',
-            area=(602, 416, 644, 442),
-            search=(582, 396, 664, 462),
-            color=(180, 150, 93),
-            button=(602, 416, 644, 442),
+            area=(1144, 32, 1193, 73),
+            search=(1124, 12, 1213, 93),
+            color=(51, 42, 7),
+            button=(1144, 32, 1193, 73),
         ),
     ],
 )

@@ -10,8 +10,7 @@
         "type": "select",
         "value": "android",
         "option": [
-          "android",
-          "cloud_android"
+          "android"
         ]
       },
       "PackageName": {
@@ -19,12 +18,8 @@
         "value": "auto",
         "option": [
           "auto",
-          "CN-Official",
-          "CN-Bilibili",
-          "OVERSEA-America",
-          "OVERSEA-Asia",
-          "OVERSEA-Europe",
-          "OVERSEA-TWHKMO"
+          "CN-Official"
+
         ]
       },
       "GameLanguage": {
