@@ -9,13 +9,9 @@ from tasks.base.assets.assets_base_page import CLOSE, MAIN_GOTO_CHARACTER, MAP_E
 from tasks.base.assets.assets_base_popup import POPUP_STORY_LATER
 from tasks.base.main_page import MainPage
 from tasks.base.page import Page, page_gacha, page_main
-from tasks.combat.assets.assets_combat_finish import COMBAT_EXIT
-from tasks.combat.assets.assets_combat_interact import MAP_LOADING
-from tasks.combat.assets.assets_combat_prepare import COMBAT_PREPARE
-from tasks.daily.assets.assets_daily_trial import INFO_CLOSE, START_TRIAL
-from tasks.forgotten_hall.assets.assets_forgotten_hall_ui import EFFECT_NOTIFICATION
-from tasks.login.assets.assets_login import LOGIN_CONFIRM
-from tasks.map.assets.assets_map_control import RUN_BUTTON
+
+from tasks.login.assets.assets_login import LOGIN_CONFIRM, ACCOUNT_CONFIRM
+
 
 
 class UI(MainPage):
@@ -28,7 +24,7 @@ class UI(MainPage):
             page (Page):
             interval:
         """
-        if page == page_main:
+        if page == page_main   :
             return self.is_in_main(interval=interval)
         return self.appear(page.check_button, interval=interval)
 
@@ -103,10 +99,7 @@ class UI(MainPage):
                 continue
             if self.handle_login_confirm():
                 continue
-            if self.appear(MAP_LOADING, similarity=0.75, interval=2):
-                logger.info('Map loading')
-                timeout.reset()
-                continue
+
 
             app_check()
             minicap_check()
@@ -194,17 +187,7 @@ class UI(MainPage):
 
         self.ui_leave_special()
 
-        if acquire_lang_checked:
-            if self.acquire_lang_checked():
-                self.ui_get_current_page(skip_first_screenshot=skip_first_screenshot)
 
-        if self.ui_current == destination:
-            logger.info("Already at %s" % destination)
-            return False
-        else:
-            logger.info("Goto %s" % destination)
-            self.ui_goto(destination, skip_first_screenshot=True)
-            return True
 
     def ui_ensure_index(
             self,
@@ -314,7 +297,8 @@ class UI(MainPage):
     def is_in_main(self, interval=0):
         self.device.stuck_record_add(MAIN_GOTO_CHARACTER)
 
-        if interval and not self.interval_is_reached(MAIN_GOTO_CHARACTER, interval=interval):
+
+        if interval  and not self.interval_is_reached(MAIN_GOTO_CHARACTER, interval=interval):
             return False
 
         appear = False
@@ -332,15 +316,15 @@ class UI(MainPage):
         return appear
 
     def is_in_login_confirm(self, interval=0):
-        self.device.stuck_record_add(LOGIN_CONFIRM)
+        self.device.stuck_record_add(ACCOUNT_CONFIRM)
 
-        if interval and not self.interval_is_reached(LOGIN_CONFIRM, interval=interval):
+        if interval and not self.interval_is_reached(ACCOUNT_CONFIRM, interval=interval):
             return False
 
-        appear = LOGIN_CONFIRM.match_template_luma(self.device.image)
+        appear = ACCOUNT_CONFIRM.match_template_luma(self.device.image)
 
         if appear and interval:
-            self.interval_reset(LOGIN_CONFIRM, interval=interval)
+            self.interval_reset(ACCOUNT_CONFIRM, interval=interval)
 
         return appear
 
@@ -392,12 +376,8 @@ class UI(MainPage):
             return True
         if self.handle_get_light_cone():
             return True
-        if self.handle_ui_close(COMBAT_PREPARE, interval=5):
-            return True
-        if self.appear_then_click(COMBAT_EXIT, interval=5):
-            return True
-        if self.appear_then_click(INFO_CLOSE, interval=5):
-            return True
+
+
         # Popup story that advice you watch it, but no, later
         if self.appear_then_click(POPUP_STORY_LATER, interval=5):
             return True

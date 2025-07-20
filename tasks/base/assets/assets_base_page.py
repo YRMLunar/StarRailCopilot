@@ -139,6 +139,16 @@ ITEM_CHECK = ButtonWrapper(
         button=(43, 23, 72, 54),
     ),
 )
+MAIL_CHECK = ButtonWrapper(
+    name='MAIL_CHECK',
+    share=Button(
+        file='./assets/share/base/page/MAIL_CHECK.png',
+        area=(143, 59, 300, 157),
+        search=(123, 39, 320, 177),
+        color=(157, 95, 36),
+        button=(143, 59, 300, 157),
+    ),
+)
 MAIN_GOTO_BATTLE_PASS = ButtonWrapper(
     name='MAIN_GOTO_BATTLE_PASS',
     share=Button(
@@ -154,10 +164,10 @@ MAIN_GOTO_CHARACTER = ButtonWrapper(
     share=[
         Button(
             file='./assets/share/base/page/MAIN_GOTO_CHARACTER.png',
-            area=(1204, 25, 1234, 51),
-            search=(1184, 5, 1254, 71),
-            color=(184, 185, 187),
-            button=(1204, 25, 1234, 51),
+            area=(24, 619, 109, 707),
+            search=(4, 599, 129, 720),
+            color=(72, 80, 88),
+            button=(24, 619, 109, 707),
         ),
         Button(
             file='./assets/share/base/page/MAIN_GOTO_CHARACTER.2.png',
@@ -206,6 +216,16 @@ MAIN_GOTO_ITEM = ButtonWrapper(
         search=(1044, 15, 1118, 79),
         color=(179, 180, 182),
         button=(1064, 35, 1098, 59),
+    ),
+)
+MAIN_GOTO_MAIL = ButtonWrapper(
+    name='MAIN_GOTO_MAIL',
+    share=Button(
+        file='./assets/share/base/page/MAIN_GOTO_MAIL.png',
+        area=(36, 259, 80, 298),
+        search=(16, 239, 100, 318),
+        color=(184, 146, 43),
+        button=(36, 259, 80, 298),
     ),
 )
 MAIN_GOTO_MAP = ButtonWrapper(
@@ -266,16 +286,6 @@ MAIN_GOTO_TUTORIAL = ButtonWrapper(
         search=(175, 38, 227, 102),
         color=(127, 131, 139),
         button=(195, 58, 207, 82),
-    ),
-)
-MAP_CHECK = ButtonWrapper(
-    name='MAP_CHECK',
-    share=Button(
-        file='./assets/share/base/page/MAP_CHECK.png',
-        area=(46, 19, 68, 54),
-        search=(26, 0, 88, 74),
-        color=(75, 75, 75),
-        button=(46, 19, 68, 54),
     ),
 )
 MAP_EXIT = ButtonWrapper(

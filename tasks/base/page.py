@@ -71,11 +71,10 @@ class Page:
 # Main page
 page_main = Page(MAIN_GOTO_CHARACTER)
 
-# Menu, entered from phone
-page_menu = Page(MENU_CHECK)
-page_menu.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_MENU, destination=page_menu)
 
+
+#mail page
+page_mail = Page(MAIL_CHECK)
 # Character
 page_character = Page(CHARACTER_CHECK)
 page_character.link(CLOSE, destination=page_main)
@@ -111,15 +110,9 @@ page_event = Page(EVENT_CHECK)
 page_event.link(CLOSE, destination=page_main)
 page_main.link(MAIN_GOTO_EVENT, destination=page_event)
 
-# Map
-page_map = Page(MAP_CHECK)
-page_map.link(CLOSE, destination=page_main)
-page_main.link(MAIN_GOTO_MAP, destination=page_map)
 
-# page_world, subpage of map, used to choose a world/planet e.g. Herta Space Station
-page_world = Page(WORLD_CHECK)
-page_world.link(BACK, destination=page_map)
-page_map.link(MAP_GOTO_WORLD, destination=page_world)
+
+
 
 # Tutorial
 page_tutorial = Page(TUTORIAL_CHECK)
@@ -138,18 +131,16 @@ page_main.link(MAIN_GOTO_MESSAGE, destination=page_message)
 
 # Camera
 page_camera = Page(CAMERA_CHECK)
-page_camera.link(CLOSE, destination=page_menu)
-page_menu.link(MENU_GOTO_CAMERA, destination=page_camera)
+
 
 # Synthesize
 page_synthesize = Page(SYNTHESIZE_CHECK)
-page_synthesize.link(CLOSE, destination=page_menu)
-page_menu.link(MENU_GOTO_SYNTHESIZE, destination=page_synthesize)
+
 
 # Assignment
 page_assignment = Page(ASSIGNMENT_CHECK)
 page_assignment.link(CLOSE, destination=page_main)
-page_menu.link(MENU_GOTO_ASSIGNMENT, destination=page_assignment)
+
 
 # Forgotten Hall
 page_forgotten_hall = Page(FORGOTTEN_HALL_CHECK)
@@ -161,4 +152,4 @@ page_rogue.link(CLOSE, destination=page_main)
 
 # Planner result
 page_planner = Page(PLANNER_CHECK)
-page_planner.link(CLOSE, destination=page_menu)
+
