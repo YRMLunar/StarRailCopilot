@@ -1,17 +1,20 @@
 from module.base.timer import Timer
 from module.exception import GameNotRunningError
 from module.logger import logger
+from tasks.base.assets.assets_base_page import MAIN_GOTO_CHARACTER
 from tasks.base.page import page_main
 from tasks.combat.assets.assets_combat_interact import MAP_LOADING
-from tasks.login.agreement import AgreementHandler
+from tasks.login.popup import GameInPopup
 from tasks.login.assets.assets_login import *
-from tasks.login.assets.assets_login_popup import ADVERTISE_Castorice, UNITY_ENGINE_ERROR
+from tasks.login.assets.assets_login_popup import ADVERTISE_Castorice, UNITY_ENGINE_ERROR, Game_Main_Announcement, \
+    Daily_Bonus, Game_In_Advertise
 from tasks.login.cloud import LoginAndroidCloud
 from tasks.login.uid import UIDHandler
 from tasks.rogue.blessing.ui import RogueUI
+from toolkit.Lib.symbol import continue_stmt
 
 
-class Login(LoginAndroidCloud, RogueUI, AgreementHandler, UIDHandler):
+class Login(LoginAndroidCloud, RogueUI, GameInPopup, UIDHandler):
     def _handle_app_login(self):
         """
         Pages:
@@ -50,9 +53,10 @@ class Login(LoginAndroidCloud, RogueUI, AgreementHandler, UIDHandler):
             # The first few frames might be captured before app_stop(), ignore them
             if startup_timer.reached():
                 if self.ui_page_appear(page_main):
-                    logger.info('Login to main confirm')
-                    break
-
+                    self.device.sleep(0.5)
+                    if(self.ui_page_appear(page_main) and self.is_game_popup()):
+                        logger.info('Login to main confirm')
+                        break
             # Watch resource downloading and loading
             if self.appear(LOGIN_LOADING, interval=5):
                 logger.info('Game resources downloading or loading')
@@ -64,10 +68,12 @@ class Login(LoginAndroidCloud, RogueUI, AgreementHandler, UIDHandler):
             # Login
             if self.is_in_login_confirm(interval=5):
                 logger.info('Game login confirm')
-                self.device.click(LOGIN_CONFIRM)
+                self.device.click(ACCOUNT_CONFIRM)
                 # Reset stuck record to extend wait time on slow devices
                 self.device.stuck_record_clear()
                 login_success = True
+                continue
+            if self.handle_game_popup():
                 continue
 
 
@@ -113,7 +119,10 @@ class Login(LoginAndroidCloud, RogueUI, AgreementHandler, UIDHandler):
             self.handle_app_login()
 
         self.config.task_delay(server_update=True)
-az = Login('alas', task='Alas')
-az.image_file = r'C:\Users\刘振洋\Desktop\StarRailCopilot\tasks\login\ACCOUNT_CONFIRM.png'
+az=Login('alas',task='Alas')
 
-print(az.appear(ACCOUNT_CONFIRM))
+
+#az.image_file = r'C:\Users\刘振洋\Desktop\StarRailCopilot\tasks\login\MuMu12-20250720-230752.png'
+#print(az.appear(MAIN_GOTO_CHARACTER))
+#print(az.appear(Game_In_Advertise))
+print(az._handle_app_login())
